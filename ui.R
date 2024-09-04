@@ -13,21 +13,23 @@ library(shiny)
 shinyUI(fluidPage(
 
     # Application title
-    titlePanel("Old Faithful Geyser Data"),
+    titlePanel("Predict horsepower from mpg"),
 
-    # Sidebar with a slider input for number of bins
+    # provide an input (slider, checkbox to show whether or not to show a given model) for value of mpg of car
     sidebarLayout(
         sidebarPanel(
-            sliderInput("bins",
-                        "Number of bins:",
-                        min = 1,
-                        max = 50,
-                        value = 30)
+            sliderInput("sliderMPG", "what is the mpg value of car?", 10, 35, value = 20),
+            checkboxInput("showModel1", "Show/Hide model1", value = TRUE),
+            checkboxInput("showModel2", "Show/Hide model2", value = TRUE),
         ),
 
-        # Show a plot of the generated distribution
+        # Show a plot of the output
         mainPanel(
-            plotOutput("distPlot")
+            plotOutput("Plot"),
+            h3("Predicted hp from Model 1:"),
+            textOutput("pred1"),
+            h3("Predicted hp from Model 2:"),
+            textOutput("pred2"),
         )
     )
 ))
